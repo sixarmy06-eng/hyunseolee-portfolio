@@ -1,0 +1,1402 @@
+@charset "UTF-8";
+
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f3f3f3;
+  color: #111111;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 전체 */
+.wrap {
+  width: 100%;
+  padding: 32px;
+}
+
+/* =========================
+   STICKY GNB
+========================= */
+/* =========================
+   STICKY GNB
+========================= */
+
+.header {
+  width: 100%;
+  height: 72px;
+  padding: 0 42px;
+  margin-bottom: 28px;
+
+  border: 2px solid #111111;
+  border-radius: 999px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 18px;
+  z-index: 999;
+
+  /* 배경은 투명하게 두고, 블러는 before에서 처리 */
+  background: transparent;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    0 0 0 3px rgba(50, 9, 165, 0.08);
+}
+
+/* GNB 뒤로 지나가는 내용만 블러 처리 */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.58);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 기존 보라색 번짐 제거용 */
+.header::after {
+  display: none;
+}
+
+/* GNB 안 로고 */
+.logo {
+  font-size: 18px;
+  font-weight: 900;
+  color: #3209a5;
+  letter-spacing: -0.4px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* GNB */
+.gnb {
+  position: relative;
+  z-index: 2;
+}
+
+.gnb > ul {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.gnb > ul > li {
+  position: relative;
+}
+
+.gnb > ul > li > a {
+  display: block;
+  padding: 24px 0;
+  font-size: 15px;
+  font-weight: 700;
+  transition: 0.25s;
+}
+
+.gnb > ul > li > a:hover {
+  color: #3209a5;
+}
+
+/* About Me 드롭다운 */
+.submenu {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 140px;
+  padding: 10px;
+
+  background-color: #111111;
+  border: 1px solid #aeaeae;
+  border-radius: 16px;
+
+  display: none;
+  z-index: 1000;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.submenu li a {
+  display: block;
+  padding: 11px 0;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: 0.25s;
+}
+
+.submenu li a:hover {
+  background-color: #3209a5;
+}
+
+.gnb-about:hover .submenu {
+  display: block;
+}
+
+.home {
+  width: 100%;
+  margin-top: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+/* Home 박스: 위쪽 각지게, 아래쪽 둥글게 */
+.home-visual {
+  position: relative;
+  min-height: 720px;
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 0 0 34px 34px;
+  overflow: hidden;
+}
+/* Home 배경 이미지 */
+.home-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 82%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+/* Home 가로 그라데이션 */
+/* Home 가로 그라데이션 */
+.home-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 18%,
+    rgba(255, 255, 255, 0.82) 30%,
+    rgba(255, 255, 255, 0.48) 43%,
+    rgba(255, 255, 255, 0.18) 57%,
+    rgba(255, 255, 255, 0) 76%
+  );
+  z-index: 2;
+}
+
+/* Home 텍스트 */
+.home-text {
+  position: relative;
+  z-index: 3;
+  width: min(62%, 820px);
+  min-height: 700px;
+  padding: clamp(60px, 7vw, 90px) clamp(32px, 5vw, 56px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.label {
+  width: fit-content;
+  padding: 8px 16px;
+  margin-bottom: 30px;
+  border: 1px solid #111111;
+  border-radius: 999px;
+  color: #3209a5;
+  background-color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.home-title {
+  margin-bottom: 32px;
+
+  font-size: 70px;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  font-weight: 900;
+
+  color: #111111;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  word-break: keep-all;
+}
+
+.home-title mark {
+  display: inline-block;
+
+  padding: 0 8px 4px;
+  margin: 0 2px;
+
+  background-color: #3209a5;
+  color: #ffffff;
+
+  border-radius: 0px;
+
+  line-height: 1;
+}
+
+
+/* =========================
+   ABOUT ME
+========================= */
+
+.about {
+  margin-top: 90px;
+}
+
+/* About Me 라벨 완전 분리 */
+.about-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+  height: 52px;
+  padding: 0 24px;
+  margin-left: 0;
+  margin-bottom: 14px;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* About Me 큰 박스 */
+.about-box-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+
+  padding: 32px;
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 0 0 34px 34px;
+}
+
+/* Portfolio / Skills 공통 카드 */
+.about-card {
+  min-height: 430px;
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* 카드 전체 hover */
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 8px 10px 0 #3209a5;
+}
+
+.about-card:active {
+  transform: translateY(-2px);
+  box-shadow: 3px 4px 0 #3209a5;
+}
+
+/* Portfolio 이미지 전체 채우기 */
+/* Profile 카드 */
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f3f8;
+}
+
+/* 사진 뒤에 깔리는 은은한 배경 */
+.profile-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      #ffffff 0%,
+      #f3f3f8 32%,
+      #e7e7f1 65%,
+      #dcdce8 100%
+    );
+}
+
+/* 프로필 사진 */
+.profile-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center top;
+
+  /* 사진 살짝 키우고 위로 올리기 */
+  transform: scale(1.30) translateY(-40px);
+}
+
+/* Skills 3분할 이미지 전체 채우기 */
+.skills-img-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  z-index: 1;
+}
+
+.skills-img-grid div {
+  overflow: hidden;
+}
+
+.skills-img-grid div + div {
+  border-left: 2px solid #111111;
+}
+
+.skills-img-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 글자 영역 세로 그라데이션 */
+/* Profile / Skills 카드 하단 그라데이션 */
+.card-vertical-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.68) 70%,
+    rgba(255, 255, 255, 0.94) 86%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* 카드에 hover 했을 때 그라데이션만 살짝 내려감 */
+.about-card:hover .card-vertical-gradient {
+  transform: translateY(28px);
+}
+
+/* 카드 텍스트 */
+.about-card-text {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 32px;
+  z-index: 4;
+}
+
+.about-card-text h3 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: 900;
+  color: #3209a5;
+}
+
+.about-card-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+}
+
+/* =========================
+   반응형
+========================= */
+
+@media screen and (max-width: 900px) {
+  .wrap {
+    padding: 18px;
+  }
+
+  .header {
+    height: auto;
+    padding: 22px;
+    border-radius: 28px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .gnb > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+  }
+
+  .submenu {
+    top: 45px;
+  }
+
+  .home-visual {
+    min-height: 720px;
+  }
+
+  .home-bg {
+    width: 100%;
+    height: 50%;
+    top: auto;
+    bottom: 0;
+  }
+
+  .home-gradient {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #ffffff 42%,
+      rgba(255, 255, 255, 0.82) 58%,
+      rgba(255, 255, 255, 0.15) 78%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .home-text {
+    width: 100%;
+    min-height: 430px;
+    padding: 60px 32px;
+  }
+
+  .home-text h2 {
+    font-size: 52px;
+  }
+
+  .about-label {
+    min-width: 170px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .about-box-wrap {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .about-card {
+    min-height: 360px;
+  }
+
+  .skills-img-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .skills-img-grid div + div {
+    border-left: none;
+    border-top: 2px solid #111111;
+  }
+
+  .about-card-text h3 {
+    font-size: 32px;
+  }
+}
+
+/* Skills 카드 배경을 Profile 카드와 비슷하게 */
+.skills-card {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      #ffffff 0%,
+      #f3f3f8 32%,
+      #e7e7f1 65%,
+      #dcdce8 100%
+    );
+}
+
+/* Skills 첫 번째 이미지 위치 조정 */
+.skills-img-grid div:first-child img {
+  transform: translateY(-28px);
+}
+
+/* =========================
+   RESUME
+========================= */
+
+.resume {
+  margin-top: 90px;
+}
+
+.resume-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+  height: 52px;
+  padding: 0 24px;
+  margin-bottom: 14px;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Resume 전체 박스 */
+.resume-box {
+  position: relative;
+
+  min-height: 620px;
+  padding: 64px 150px 82px;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 0 0 34px 34px;
+
+  overflow: hidden;
+}
+
+/* 슬라이드 보이는 영역 */
+.resume-slider {
+  width: 100%;
+  overflow: visible;
+}
+
+.resume-track {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.resume-card {
+  flex: 0 0 54%;
+  height: 460px;
+
+  position: relative;
+  overflow: hidden;
+
+  background-color: #eeeeee;
+  border: 2px solid #111111;
+  border-radius: 0 0 28px 28px;
+
+  transition: 0.45s ease;
+  opacity: 0.38;
+  transform: scale(0.88);
+  z-index: 1;
+}
+
+/* 선택된 카드가 확실히 튀어나오게 */
+.resume-card.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 5;
+  border-color: #111111;
+  box-shadow: 8px 10px 0 #3209a5;
+}
+/* 카드 이미지 */
+.resume-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 글자 잘 보이게 세로 그라데이션 */
+.resume-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.9) 24%,
+    rgba(255, 255, 255, 0.62) 44%,
+    rgba(255, 255, 255, 0.24) 66%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* 카드 텍스트 */
+.resume-text {
+  position: absolute;
+  left: 38px;
+  right: 38px;
+  bottom: 24px;
+  z-index: 3;
+}
+
+.resume-text h3 {
+  margin-bottom: 12px;
+
+  font-size: 42px;
+  font-weight: 900;
+  color: #111111;
+  transform: translateY(16px);
+}
+
+.resume-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333333;
+}
+
+/* 좌우 버튼 */
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 50%;
+
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 30;
+}
+
+.slide-btn:hover {
+  background-color: #3209a5;
+  color: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(50, 9, 165, 0.14),
+    0 10px 28px rgba(50, 9, 165, 0.32);
+}
+
+.slide-btn.prev {
+  left: 34px;
+}
+
+
+.slide-btn.next {
+  right: 34px;
+}
+
+/* 아래 점 */
+.resume-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 20;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+
+  border: 1.5px solid #111111;
+  border-radius: 999px;
+  background-color: #ffffff;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.dot.active {
+  width: 30px;
+  background-color: #3209a5;
+  border-color: #3209a5;
+}
+
+/* 반응형 Resume */
+@media screen and (max-width: 900px) {
+  .resume-box {
+    min-height: 590px;
+    padding: 58px 70px 82px;
+  }
+
+  .resume-card {
+    flex: 0 0 86%;
+    height: 420px;
+  }
+
+  .resume-text h3 {
+    font-size: 34px;
+  }
+
+  .resume-text p {
+    font-size: 15px;
+  }
+
+  .slide-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 32px;
+  }
+
+  .prev {
+    left: 16px;
+  }
+
+  .next {
+    right: 16px;
+  }
+}   
+
+/* =========================
+   SUM UP
+========================= */
+
+.sumup {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.sumup-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+  height: 52px;
+  padding: 0 24px;
+  margin-bottom: 14px;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Sum Up 전체 박스 */
+.sumup-box {
+  width: 100%;
+  min-height: 560px;
+  padding: 56px 76px 56px 64px;
+
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 34px;
+  align-items: center;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 0 0 34px 34px;
+
+  overflow: hidden;
+}
+
+/* 왼쪽 설명 */
+.sumup-text {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+.sumup-small-title {
+  width: fit-content;
+  padding: 8px 16px;
+  margin-bottom: 28px;
+
+  border: 1px solid #111111;
+  border-radius: 999px;
+
+  color: #3209a5;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.sumup-text h2 {
+  margin-bottom: 28px;
+
+  font-size: 52px;
+  line-height: 1.28;
+  letter-spacing: -2.5px;
+  font-weight: 900;
+
+  color: #3209a5;
+
+  word-break: keep-all;
+} 
+
+.sumup-desc {
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.8;
+
+  word-break: keep-all;
+}
+
+/* 오른쪽 이미지 그리드 */
+.sumup-img-grid {
+  width: 96%;
+  height: 430px;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.7fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+
+  justify-self: start;
+  padding-right: 0;
+}
+
+/* 이미지 공통 */
+.sumup-img {
+  position: relative;
+  overflow: hidden;
+
+  border: 2px solid #111111;
+  background-color: #eeeeee;
+  border-radius: 0 0 26px 26px;
+}
+
+/* 이미지 hover 효과 제거 */
+.sumup-img:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.sumup-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 불규칙 배치 */
+.img-large {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+.img-small.top {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.img-small.bottom {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.img-medium {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+}
+
+/* 이미지 위 그라데이션 제거 */
+.sumup-img::after {
+  display: none;
+}
+
+/* 반응형 Sum Up */
+@media screen and (max-width: 900px) {
+  .sumup-box {
+    grid-template-columns: 1fr;
+    padding: 34px 24px;
+    gap: 34px;
+  }
+
+  .sumup-text h2 {
+    font-size: 42px;
+  }
+
+  .sumup-img-grid {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    padding-right: 0;
+  }
+
+  .img-large,
+  .img-small.top,
+  .img-small.bottom,
+  .img-medium {
+    grid-column: auto;
+    grid-row: auto;
+    height: 230px;
+  }
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+/* GNB 클릭 시 섹션이 너무 위로 붙지 않게 조정 */
+#home,
+#about,
+#resume,
+#sumup,
+#contact {
+  scroll-margin-top: 120px;
+}
+
+.sumup-gallery {
+  display: grid;
+  grid-template-columns: 1.15fr 0.75fr 1.1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+}
+
+.sumup-item {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #222;
+  border-radius: 0 0 26px 26px;
+  background: linear-gradient(180deg, #f3f3fa 0%, #ececf4 100%);
+}
+
+/* 이미지 꽉 차게 */
+.sumup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 우리가 계속 쓰던 느낌의 아래쪽 흰 그라데이션 */
+.sumup-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: linear-gradient(
+    to top,
+    rgba(245, 245, 250, 0.98) 0%,
+    rgba(245, 245, 250, 0.88) 28%,
+    rgba(245, 245, 250, 0.55) 55%,
+    rgba(245, 245, 250, 0.18) 78%,
+    rgba(245, 245, 250, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* 불규칙 배치 */
+.sumup-item1 {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  min-height: 430px;
+}
+
+.sumup-item2 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  min-height: 205px;
+}
+
+.sumup-item3 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  min-height: 205px;
+}
+
+.sumup-item4 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+  min-height: 430px;
+}
+
+/* Sum Up 이미지 프레임 안 그라데이션 제거 */
+.sumup-gradient {
+  display: none;
+}
+
+.sumup-img::after,
+.sumup-item::after {
+  display: none;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+  margin-top: 90px;
+}
+
+.contact-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 200px;
+  height: 52px;
+  padding: 0 24px;
+  margin-bottom: 14px;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 999px;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Contact 전체 박스 */
+.contact-box {
+  min-height: 420px;
+  padding: 64px 72px;
+
+  display: grid;
+  grid-template-columns: 44% 46%;
+  gap: 46px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #111111;
+  border: 2px solid #111111;
+  border-radius: 0 0 34px 34px;
+
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* 왼쪽 설명 */
+.contact-left {
+  position: relative;
+  padding-left: 34px;
+}
+
+/* 왼쪽 포인트 라인 */
+.contact-left::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #3209a5 0%,
+    rgba(56, 0, 211, 0.25) 100%
+  );
+
+  border-radius: 999px;
+}
+
+.contact-left h2 {
+  margin-bottom: 28px;
+
+  font-size: 54px;
+  line-height: 1;
+  letter-spacing: -2px;
+  font-weight: 900;
+
+  color: #ffffff;
+}
+
+.contact-title mark {
+  display: inline-block;
+  padding: 0 8px 4px;
+  margin-top: 4px;
+
+  background-color: #3209a5;
+  color: #ffffff;
+
+  border-radius: 0;
+  line-height: 1;
+}
+
+.contact-desc {
+  max-width: 620px;
+
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* 오른쪽 연락 정보 박스 */
+.contact-right {
+  padding: 38px 44px;
+
+  background-color: #ffffff;
+  color: #111111;
+
+  border: 2px solid #111111;
+  border-radius: 0 0 28px 28px;
+
+  justify-self: start;
+  width: 100%;
+  max-width: 900px;
+}
+
+.contact-info-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+
+  padding: 24px 0;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.contact-info-row:first-child {
+  padding-top: 0;
+}
+
+.contact-info-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.contact-info-row h3 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1.4;
+}
+
+.contact-info-row p {
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #333333;
+}
+
+/* SNS 줄만 살짝 아래로 자연스럽게 */
+.sns-info-row h3 {
+  padding-top: 10px;
+}
+
+/* SNS 이미지 아이콘 */
+.sns-list {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.sns-list a {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-radius: 50%;
+
+  background-color: #ffffff;
+  transition: 0.25s;
+}
+
+.sns-list a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sns-list a:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 3px rgba(50, 9, 165, 0.16),
+    0 8px 20px rgba(50, 9, 165, 0.28);
+}
+
+/* 반응형 Contact */
+@media screen and (max-width: 900px) {
+  .contact-box {
+    grid-template-columns: 1fr;
+    padding: 42px 28px;
+    gap: 34px;
+  }
+
+  .contact-left h2 {
+    font-size: 38px;
+  }
+
+  .contact-right {
+    padding: 30px 26px;
+    max-width: none;
+  }
+
+  .contact-info-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sns-info-row h3 {
+    padding-top: 0;
+  }
+
+  .sns-list {
+    flex-wrap: wrap;
+  }
+}
+
+/* Resume 화살표를 카드 중앙 기준으로 맞추기 */
+.resume-box {
+  position: relative;
+}
+
+/* 카드 높이와 상단 여백 기준으로 정확히 중앙 배치 */
+.resume-box .slide-btn {
+  position: absolute;
+
+  /* resume-box padding-top 64px + 카드 높이 460px의 절반 */
+  top: calc(64px + 230px) !important;
+
+  transform: translateY(-50%) !important;
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 50%;
+
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 50;
+}
+
+.resume-box .slide-btn.prev {
+  left: 34px !important;
+}
+
+.resume-box .slide-btn.next {
+  right: 34px !important;
+}
+
+/* 화살표 기호 자체 위치 미세 조정 */
+.resume-box .slide-btn span {
+  display: block;
+  line-height: 1;
+  transform: translateY(-2px);
+}
+/* Resume 화살표 위치 + hover 효과 최종 수정 */
+.resume-box {
+  position: relative;
+}
+
+.resume-box .slide-btn {
+  position: absolute;
+  top: calc(64px + 230px) !important;
+  transform: translateY(-50%) !important;
+
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  color: #111111;
+
+  border: 2px solid #111111;
+  border-radius: 50%;
+
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+
+  cursor: pointer;
+  z-index: 80;
+
+  transition: 0.25s ease;
+}
+
+.resume-box .slide-btn.prev {
+  left: 34px !important;
+}
+
+.resume-box .slide-btn.next {
+  right: 34px !important;
+}
+
+/* 화살표 기호 자체 위치 */
+.resume-box .slide-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+  transform: translateY(-2px);
+
+  color: inherit;
+  transition: 0.25s ease;
+}
+
+/* hover 했을 때 보라색으로 변경 */
+.resume-box .slide-btn:hover {
+  background-color: #3209a5;
+  border-color: #3209a5;
+  color: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(50, 9, 165, 0.14),
+    0 8px 18px rgba(50, 9, 165, 0.28);
+}
+
+/* Resume 버튼 안의 화살표 기호만 위로 올리기 */
+.resume-box .slide-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+  transform: translateY(-5px);
+}
